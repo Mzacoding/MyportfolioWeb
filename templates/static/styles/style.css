@@ -1,0 +1,759 @@
+
+        /* Custom CSS to override or extend Tailwind, and for specific effects */
+        *, *::before, *::after {
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+            overflow-x: hidden; /* Prevent horizontal scroll on small devices */
+        }
+
+        /* Global Base Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+            
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            z-index: 1000; /* Ensure it stays on top */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+            padding: 1rem 2rem; /* Default padding for navbar */
+        }
+
+        .hero-section {
+            min-height: 100vh; /* Full viewport height by default */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        section {
+            padding: 10rem 0; /* More generous padding between sections by default */
+            position: relative;
+        }
+
+        /* Navigation Bar Link Styling */
+        .nav-link {
+            transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            position: relative;
+            font-size: 1rem; /* Default font size for nav links */
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 0;
+            height: 2px;
+            background-color: #3b82f6; /* Tailwind blue-500 */
+            transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        /* Mobile Menu Overlay Styling (WhatsApp-like slide-down) */
+        #nav-links-menu {
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s ease-out;
+            position: fixed; /* Fixed position to cover entire viewport */
+            top: 0;
+            left: 0;
+            width: 100vw; /* Full viewport width */
+            height: 100vh; /* Full viewport height */
+            background-color: rgba(255, 255, 255, 0.98); /* Less transparent for full overlay */
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            z-index: 998; /* Below fixed navbar, but above page content */
+            transform: translateY(-100%); /* Start off-screen above */
+            opacity: 0;
+            visibility: hidden;
+            display: flex; /* Ensure it's flex for vertical layout */
+            flex-direction: column;
+            align-items: center; /* Center links horizontally */
+            justify-content: center; /* Center links vertically */
+            padding: 2rem 1rem; /* More generous padding for entire menu */
+            border-radius: 0; /* No rounded corners for full screen overlay */
+            box-shadow: none; /* No shadow needed for full screen overlay */
+        }
+
+        #nav-links-menu.nav-open {
+            transform: translateY(0); /* Slide down into view */
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #nav-links-menu .nav-link {
+            padding: 1.5rem 0; /* More vertical padding for easier touch targets */
+            font-size: 1.5rem; /* Larger font size for mobile links */
+            text-align: center;
+            border-bottom: 1px solid rgba(0,0,0,0.1); /* Clearer separator */
+            width: 80%; /* Limit width for very large phones, center it */
+            max-width: 300px; /* Max width for individual links */
+            color: #4a5568; /* Darker gray for better contrast on white */
+        }
+        #nav-links-menu .nav-link:last-child {
+            border-bottom: none; /* No separator for the last link */
+        }
+
+        /* Hamburger icon transformation */
+        #hamburger-menu .line {
+            transition: all 0.3s ease-in-out;
+            transform-origin: center;
+        }
+        #hamburger-menu.open .top-line {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        #hamburger-menu.open .middle-line {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        #hamburger-menu.open .bottom-line {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Hide hamburger and show full menu on large screens */
+        @media (min-width: 1025px) { /* Applies from small desktops up */
+            #nav-links-menu {
+                display: none; /* Explicitly hide mobile overlay on large screens */
+            }
+
+            /* Desktop Navigation Links */
+            .navbar-desktop-links {
+                display: flex !important; /* Ensure desktop links are flex on large screens */
+                flex-direction: row;
+                width: auto;
+                height: auto;
+                padding: 0;
+                flex-wrap: nowrap;
+                background-color: transparent; /* No background for desktop links */
+                box-shadow: none; /* No shadow for desktop links */
+            }
+            .navbar-desktop-links .nav-link {
+                padding: 0; /* Reset padding for horizontal links */
+                border-bottom: none; /* Remove border */
+                font-size: 1rem; /* Default font size for desktop nav links */
+                width: auto; /* Auto width for individual links */
+                max-width: none; /* No max-width restriction */
+            }
+            #hamburger-menu {
+                display: none; /* Hide hamburger on larger screens */
+            }
+            .navbar > div {
+                justify-content: space-between; /* Keep logo left, menu section right */
+            }
+            /* The new wrapper div for centering nav links on desktop */
+            .navbar-links-wrapper-desktop {
+                flex: 1; /* Allows this div to take remaining space */
+                display: flex;
+                justify-content: center; /* Centers its content horizontally */
+            }
+        }
+
+
+        /* Generic style for sections that will have a background image and dark overlay */
+        .has-dark-overlay {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Simple parallax */
+            color: white; /* Default text color for these sections */
+            position: relative;
+            z-index: 1; /* Ensure content is above overlay */
+        }
+
+        .has-dark-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7); /* Dark overlay for text contrast */
+            z-index: -1; /* Place behind content */
+        }
+
+        /* Specific background images for each section */
+        .hero-section {
+            background-image: url('images/Walker1.jpg');  
+        }
+
+        .skills-section {
+            background-image: url('images/back4.jpg'); /* Emerald Green */
+        }
+
+        .education-section {
+            background-image: url('images/back5.jpg'); /* Purple */
+        }
+
+        .contact-section {
+            background-image: url('images/back3.jpg'); /* Red */
+        }
+
+
+        /* Hero Section Specific Styling */
+        .hero-section {
+            padding: 12rem 0; /* Even more vertical padding for a grander feel */
+        }
+
+        .profile-pic {
+            width: 200px; /* Larger profile picture */
+            height: 200px;
+            border-radius: 50%; /* Keep this one rounded */
+            object-fit: cover;
+            border: 6px solid #ffffff; /* Thicker white border */
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5); /* More prominent shadow */
+        }
+
+        /* General Section Styling */
+        section:not(:last-of-type)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%; /* A subtle separator line */
+            height: 1px;
+            background-color: #e2e8f0; /* Tailwind's gray-200 */
+        }
+        /* Override separator for sections with background */
+        .has-dark-overlay:not(:last-of-type)::after {
+            background-color: rgba(255, 255, 255, 0.2); /* Lighter separator on dark background */
+        }
+
+
+        .section-title {
+            font-size: 4rem; /* Larger, more impactful titles */
+            font-weight: 800; /* Extra bold */
+            margin-bottom: 4rem; /* More space below title */
+            text-align: center;
+            color: #1a202c;
+            position: relative;
+        }
+        /* Title color for sections with background */
+        .has-dark-overlay .section-title {
+            color: white;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px; /* Wider underline */
+            height: 5px; /* Thicker underline */
+            background-color: #3b82f6; /* Tailwind blue-500 */
+            margin: 1.5rem auto 0; /* Centered underline with more space */
+            border-radius: 3px;
+        }
+
+        .card {
+            border-radius: 1.25rem; /* Even more rounded corners */
+            box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.18), 0 10px 15px -7px rgba(0, 0, 0, 0.1); /* Stronger, softer shadow */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-10px); /* More pronounced lift on hover */
+            box-shadow: 0 25px 45px -10px rgba(0, 0, 0, 0.25), 0 15px 20px -10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Generic Primary Button Style (used for Download Resume) */
+        .btn-primary {
+            background: linear-gradient(to right, #3b82f6, #2563eb); /* Blue gradient */
+            color: white;
+            padding: 1.2rem 2.5rem; /* Large padding for large screens */
+            border-radius: 9999px;
+            font-weight: 700;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+            border: none;
+            display: inline-flex; /* Ensure flex for icon alignment */
+            align-items: center;
+            justify-content: center;
+            text-decoration: none; /* Remove underline from anchor button */
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6);
+        }
+        .btn-primary:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 5px rgba(59, 130, 246, 0.3);
+        }
+
+
+        /* Project Section Specific Button Styling */
+        .project-btn-primary, .project-btn-secondary {
+            color: white; /* Default white text for primary */
+            padding: 1.2rem 2.5rem; /* Large padding for large screens */
+            border-radius: 9999px;
+            font-weight: 700;
+            transition: all 0.3s ease-in-out;
+            border: none; /* Reset border for primary */
+            display: inline-flex; /* Ensure flex for icon alignment */
+            align-items: center;
+            justify-content: center;
+            text-decoration: none; /* Remove underline from anchor button */
+        }
+        .project-btn-primary {
+            background: linear-gradient(to right, #3b82f6, #2563eb); /* Blue gradient */
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+        .project-btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6);
+        }
+        .project-btn-primary:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 5px rgba(59, 130, 246, 0.3);
+        }
+
+        .project-btn-secondary {
+            background-color: white;
+            color: #4a5568;
+            border: 2px solid #a0aec0;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        .project-btn-secondary:hover {
+            background-color: #edf2f7;
+            color: #2d3748;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+        .project-btn-secondary:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+        }
+
+
+        /* Project card image */
+        .project-img {
+            height: 320px; /* Fixed height for consistent project card images, larger */
+            object-fit: cover;
+        }
+
+        /* Education Timeline Specific Styling */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            -webkit-backdrop-filter: blur(10px); /* Subtle blur for timeline background */
+            backdrop-filter: blur(10px); /* Subtle blur for timeline background */
+
+            background-color: #ffffff;
+        }
+        /* Hide timeline line and dots for smaller screens (mobile/tablet portrait) */
+        @media only screen and (max-width: 1024px) {
+            .timeline::after, .timeline-item::after {
+                display: none;
+            }
+            .timeline-item { /* Full width, simplified padding for mobile/tablet portrait */
+                width: 100%;
+                padding: 1rem 0; /* Adjust vertical padding */
+                text-align: left; /* Ensure text is left aligned */
+            }
+            .timeline-left .timeline-item-content, .timeline-right .timeline-item-content {
+                text-align: left; /* Force left align regardless of original side */
+            }
+            .timeline-item-content {
+                padding: 1.2rem 1.5rem; /* Adjusted internal padding for cards */
+            }
+            .timeline-date { font-size: 0.9rem; } /* Adjusted font size for dates */
+            .timeline-item-content h3 { font-size: 1.2rem; } /* Adjusted font size for titles */
+            .timeline-item-content p { font-size: 0.85rem; } /* Adjusted font size for descriptions */
+        }
+
+        /* Re-introduce timeline line and dots for larger screens */
+        @media only screen and (min-width: 1025px) {
+            .timeline::after {
+                content: '';
+                position: absolute;
+                width: 6px;
+                background-color: #f7fafc;
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                margin-left: -3px;
+                border-radius: 3px;
+                display: block; /* Ensure it's displayed on large screens */
+            }
+            .timeline-item {
+                padding: 10px 40px;
+                position: relative;
+                background-color: inherit;
+                width: 50%;
+            }
+            .timeline-item::after {
+                content: '';
+                position: absolute;
+                width: 25px;
+                height: 25px;
+                background-color: #3b82f6;
+                border: 4px solid #fff;
+                top: 15px;
+                border-radius: 50%;
+                z-index: 1;
+                display: block; /* Ensure it's displayed on large screens */
+            }
+            .timeline-left {
+                left: 0;
+            }
+            .timeline-right {
+                left: 50%;
+            }
+            .timeline-left::after { /* Specific adjustment for left side dot */
+                right: -12.5px;
+                left: auto;
+            }
+            .timeline-right::after { /* Specific adjustment for right side dot */
+                left: -12.5px;
+                right: auto;
+            }
+            .timeline-left .timeline-item-content {
+                text-align: right;
+            }
+            .timeline-right .timeline-item-content {
+                text-align: left;
+            }
+            .timeline-item-content {
+                padding: 20px 30px; /* Default padding for timeline card on larger screens */
+            }
+            .timeline-date {
+                font-size: 1.1rem;
+                color: #4a5568;
+                margin-bottom: 10px;
+            }
+            .timeline-item-content h3 {
+                font-size: 1.8rem;
+            }
+            .timeline-item-content p {
+                font-size: 1.05rem;
+            }
+        }
+
+
+        /* Skill Bar Specific Styling */
+        .skill-bar-container {
+            width: 100%; /* Max width for the container */
+            height: 20px; /* Height of the bar */
+            background-color: rgba(255, 255, 255, 0.2); /* Lighter background for empty bar on dark background */
+            border-radius: 10px; /* Rounded corners for the bar */
+            overflow: hidden; /* Hide overflow from the fill */
+            position: relative;
+            margin-bottom: 8px; /* Space between bar and percentage text */
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Align percentage text to the right */
+            padding-right: 10px; /* Padding for percentage text */
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem; /* Default skill percentage font size */
+            transition: width 1s ease-out; /* Smooth animation for fill */
+        }
+ 
+
+/* Specific colors for skill bars */
+.skill-bar-software-engineering {
+  background: linear-gradient(to right, #6366F1, #2563EB); /* Softer Indigo to Deeper Blue */
+}
+
+.skill-bar-database {
+  background: linear-gradient(to right, #34D399, #047857); /* Lighter Emerald to Darker Green */
+}
+
+.skill-bar-kotlin {
+  background: linear-gradient(to right, #C084FC, #7E22CE); /* Pastel Purple to Deeper Violet */
+}
+
+.skill-bar-java {
+  background: linear-gradient(to right, #F87171, #B91C1C); /* Softer Red to Deeper Rose */
+}
+
+.skill-bar-web-dev {
+  background: linear-gradient(to right, #FBBF24, #EA580C); /* Lighter Amber to Deeper Orange */
+}
+
+.skill-bar-prototyping {
+  background: linear-gradient(to right, #F472B6, #BE185D); /* Softer Pink to Deeper Fuchsia */
+}
+
+
+ 
+        /* Base styling for hero animation lines */
+        .hero-line {
+            display: inline-block; /* Essential for caret effect and line breaks */
+            overflow: hidden; /* Hides text outside current width */
+            white-space: nowrap; /* Prevents text from wrapping */
+            font-family: monospace; /* Monospace font looks good for typing */
+            vertical-align: top; /* Ensures proper vertical alignment with <br> */
+            box-sizing: border-box; /* Include padding/border in width */
+            /* Initially hide the elements for animation */
+            visibility: hidden;
+            height: 0;
+            line-height: 0;
+            transition: visibility 0s linear 0s, height 0s linear 0s, line-height 0s linear 0s; /* No transition on initial hide */
+        }
+        /* When an element becomes active, transition it in */
+        .hero-line.active {
+            visibility: visible;
+            height: auto; /* Let it take its natural height */
+            line-height: inherit; /* Restore default line height */
+            transition: visibility 0s linear 0s, height 0.3s ease-out, line-height 0.3s ease-out; /* Smooth transition for showing */
+        }
+
+
+        /* Cursor blink effect */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: white } /* White cursor on dark background */
+        }
+        /* Apply blinking border when active for typing/erasing */
+        .hero-line.typing-active-caret,
+        .hero-line.erasing-active-caret {
+            border-right: .15em solid white;
+            animation: blink-caret .75s step-end infinite;
+        }
+
+        /* ========================================================================= */
+        /* Responsive Adjustments - Using the provided breakpoints */
+        /* ========================================================================= */
+
+        /* Extra-large desktops: @media only screen and (min-width: 1921px) */
+        @media only screen and (min-width: 1921px) {
+            body { font-size: 20px; }
+            .hero-section h1 { font-size: 10rem; }
+            .section-title { font-size: 5rem; margin-bottom: 5rem; }
+            section { padding: 12rem 0; }
+            .navbar { padding: 1.5rem 3rem; }
+            .nav-link { font-size: 1.2rem; }
+            .profile-pic { width: 250px; height: 250px; }
+            .text-xl { font-size: 1.5rem; } /* About section general text */
+            .project-img { height: 400px; }
+            .p-10 { padding: 2.5rem; } /* Project card padding */
+            .text-3xl { font-size: 2.5rem; } /* Project card title, Contact section email/phone */
+            .text-lg.font-semibold { font-size: 1.5rem; } /* Skill titles */
+            .contact-section .text-2xl { font-size: 2.25rem; }
+            .contact-section .space-y-8 { font-size: 1.5rem; }
+            .btn-primary, .project-btn-primary, .project-btn-secondary {
+                font-size: 1.2rem;
+                padding: 1.3rem 2.8rem;
+            }
+        }
+
+        /* Large desktops: @media only screen and (min-width: 1441px) and (max-width: 1920px) */
+        @media only screen and (min-width: 1441px) and (max-width: 1920px) {
+            body { font-size: 18px; }
+            .hero-section h1 { font-size: 9rem; }
+            .section-title { font-size: 4.5rem; margin-bottom: 4.5rem; }
+            section { padding: 11rem 0; }
+            .navbar { padding: 1.2rem 2.5rem; }
+            .nav-link { font-size: 1.1rem; }
+            .profile-pic { width: 220px; height: 220px; }
+            .text-xl { font-size: 1.3rem; }
+            .project-img { height: 350px; }
+            .p-10 { padding: 2.2rem; }
+            .text-3xl { font-size: 2.2rem; }
+            .text-lg.font-semibold { font-size: 1.3rem; }
+            .skill-bar-fill { font-size: 1rem; padding-right: 10px; }
+            .contact-section .text-2xl { font-size: 2rem; }
+            .contact-section .space-y-8 { font-size: 1.3rem; }
+            .btn-primary, .project-btn-primary, .project-btn-secondary {
+                font-size: 1.1rem;
+                padding: 1.2rem 2.5rem;
+            }
+        }
+
+        /* Medium desktops: @media only screen and (min-width: 1281px) and (max-width: 1440px) */
+        @media only screen and (min-width: 1281px) and (max-width: 1440px) {
+            body { font-size: 17px; }
+            .hero-section h1 { font-size: 8rem; }
+            .section-title { font-size: 4rem; margin-bottom: 4rem; }
+            .navbar { padding: 1.1rem 2rem; }
+            .nav-link { font-size: 1.05rem; }
+            .text-xl { font-size: 1.2rem; }
+            .project-img { height: 320px; }
+            .p-10 { padding: 2rem; }
+            .text-3xl { font-size: 2rem; }
+            .text-lg.font-semibold { font-size: 1.2rem; }
+            .skill-bar-fill { font-size: 0.95rem; padding-right: 9px; }
+            .contact-section .text-2xl { font-size: 1.8rem; }
+            .contact-section .space-y-8 { font-size: 1.2rem; }
+            .btn-primary, .project-btn-primary, .project-btn-secondary {
+                font-size: 1rem;
+                padding: 1.1rem 2.2rem;
+            }
+        }
+
+        /* Small desktops or large laptops: @media only screen and (min-width: 1025px) and (max-width: 1280px) */
+        @media only screen and (min-width: 1025px) and (max-width: 1280px) {
+            body { font-size: 16px; }
+            .hero-section h1 { font-size: 7.5rem; }
+            .section-title { font-size: 3.8rem; margin-bottom: 3.8rem; }
+            section { padding: 9rem 0; }
+            /* The parent div of nav-links-menu (navbar-links-wrapper-desktop) handles spacing now */
+            .nav-link { font-size: 1rem; }
+            .text-xl { font-size: 1.1rem; }
+            .project-img { height: 300px; }
+            .p-10 { padding: 1.8rem; }
+            .text-3xl { font-size: 1.8rem; }
+            .text-lg.font-semibold { font-size: 1.1rem; }
+            .skill-bar-fill { font-size: 0.9rem; padding-right: 8px; }
+            .contact-section .space-y-8 { font-size: 1.1rem; }
+            .btn-primary, .project-btn-primary, .project-btn-secondary {
+                font-size: 0.95rem;
+                padding: 1rem 2rem;
+            }
+        }
+
+        /* Tablet Devices - Landscape: @media only screen and (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) */
+        @media only screen and (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+            body { font-size: 15px; }
+            .hero-section h1 { font-size: 6.5rem; }
+            .section-title { font-size: 3.5rem; margin-bottom: 3.5rem; }
+            section { padding: 8rem 0; }
+            .navbar { padding: 1rem 1.5rem; }
+            .nav-link { font-size: 0.95rem; }
+            .profile-pic { width: 250px; height: 250px; } /* Slightly larger for tablets */
+            .text-xl { font-size: 1.05rem; }
+            .project-img { height: 280px; } /* Adjusted image height */
+            .p-10 { padding: 1.6rem; } /* Adjusted card padding */
+            .text-3xl { font-size: 1.7rem; }
+            .text-lg.font-semibold { font-size: 1rem; }
+            /* Button adjustments */
+            .btn-primary, .project-btn-primary, .project-btn-secondary {
+                padding: 1rem 2rem;
+                font-size: 0.95rem;
+            }
+            .skill-bar-fill { font-size: 0.85rem; padding-right: 8px; }
+            .contact-section .text-2xl { font-size: 1.4rem; }
+            .contact-section .space-y-8 { font-size: 1rem; }
+            /* Adjust project grid to 2 columns */
+            .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        /* Tablet Devices - Portrait: @media only screen and (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) */
+        @media only screen and (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+            body { font-size: 14px; }
+            .hero-section h1 { font-size: 6rem; }
+            .section-title { font-size: 3.2rem; margin-bottom: 3.2rem; }
+            section { padding: 7rem 0; }
+            .navbar { padding: 0.8rem 1rem; }
+            .nav-link { font-size: 0.9rem; }
+            .profile-pic { width: 220px; height: 220px; }
+            .text-xl { font-size: 1rem; }
+            .project-img { height: 260px; } /* Adjusted image height */
+            .p-10 { padding: 1.5rem; } /* Adjusted card padding */
+            .text-3xl { font-size: 1.6rem; }
+            .text-lg.font-semibold { font-size: 0.95rem; }
+            /* Button adjustments */
+            .btn-primary, .project-btn-primary, .project-btn-secondary {
+                padding: 0.9rem 1.8rem;
+                font-size: 0.9rem;
+            }
+            .skill-bar-fill { font-size: 0.8rem; padding-right: 7px; }
+            .contact-section .text-2xl { font-size: 1.25rem; }
+            .contact-section .space-y-8 { font-size: 0.95rem; }
+            /* Adjust project grid to 2 columns */
+            .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        /* Large smartphones or small tablets: @media only screen and (min-width: 481px) and (max-width: 768px) */
+        @media only screen and (min-width: 481px) and (max-width: 768px) {
+            body { font-size: 13px; }
+            .navbar { padding: 0.7rem 0.8rem; }
+            .hero-section h1 { font-size: 5rem; }
+            .section-title { font-size: 2.8rem; margin-bottom: 2.5rem; }
+            section { padding: 6rem 0; }
+            .profile-pic { width: 180px; height: 180px; }
+            .text-xl { font-size: 0.95rem; }
+            .project-img { height: 220px; } /* Adjusted image height */
+            .p-10 { padding: 1.2rem; } /* Adjusted card padding */
+            .text-3xl { font-size: 1.5rem; }
+            .text-lg.font-semibold { font-size: 0.9rem; }
+            /* Button adjustments */
+            .btn-primary, .project-btn-primary, .project-btn-secondary {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.85rem;
+            }
+            .skill-bar-fill { font-size: 0.75rem; padding-right: 6px; }
+            .contact-section .text-2xl { font-size: 1.1rem; }
+            .contact-section .space-y-8 { font-size: 0.85rem; }
+            /* Projects 1 column */
+            .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3 {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
+        }
+
+        /* Most smartphones: @media only screen and (min-width: 321px) and (max-width: 480px) */
+        @media only screen and (min-width: 321px) and (max-width: 480px) {
+            body { font-size: 12px; }
+            .navbar { padding: 0.6rem 0.6rem; }
+            .hero-section h1 { font-size: 4rem; }
+            .section-title { font-size: 2.2rem; margin-bottom: 2rem; }
+            section { padding: 5rem 0; }
+            .profile-pic { width: 160px; height: 160px; }
+            .text-xl { font-size: 0.9rem; }
+            .project-img { height: 180px; } /* Adjusted image height */
+            .p-10 { padding: 1rem; } /* Adjusted card padding */
+            .text-3xl { font-size: 1.2rem; }
+            .text-lg.font-semibold { font-size: 0.85rem; }
+            /* Button adjustments */
+            .btn-primary, .project-btn-primary, .project-btn-secondary {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.8rem;
+            }
+            .skill-bar-fill { font-size: 0.7rem; padding-right: 5px; }
+            .contact-section .text-2xl { font-size: 1rem; }
+            .contact-section .space-y-8 { font-size: 0.8rem; }
+            #contactForm { padding: 1.2rem; }
+        }
+
+        /* Older smartphones: @media only screen and (max-width: 320px) */
+        @media only screen and (max-width: 320px) {
+            body { font-size: 11px; }
+            .navbar { padding: 0.5rem 0.4rem; }
+            .hero-section h1 { font-size: 3.5rem; }
+            .section-title { font-size: 1.8rem; margin-bottom: 1.5rem; }
+            section { padding: 4rem 0; }
+            .profile-pic { width: 140px; height: 140px; }
+            .text-xl { font-size: 0.85rem; }
+            .project-img { height: 150px; } /* Adjusted image height */
+            .p-10 { padding: 0.8rem; } /* Adjusted card padding */
+            .text-3xl { font-size: 1rem; }
+            .text-lg.font-semibold { font-size: 0.8rem; }
+            /* Button adjustments */
+            .btn-primary, .project-btn-primary, .project-btn-secondary {
+                padding: 0.6rem 1rem;
+                font-size: 0.75rem;
+                width: 100%; /* Make buttons full width on very small screens */
+            }
+            .project-btn-secondary {
+                margin-top: 0.5rem; /* Add some margin if stacked */
+            }
+            .skill-bar-fill { font-size: 0.65rem; padding-right: 4px; }
+            .contact-section .text-2xl { font-size: 0.9rem; }
+            .contact-section .space-y-8 { font-size: 0.75rem; }
+            #contactForm { padding: 1rem; }
+        }
+
+        /* High-definition (HD) displays / Retina displays - generally handled by scaling pixels, but can adjust if needed */
+        @media only screen and (min-resolution: 192dpi), only screen and (-webkit-min-device-pixel-ratio: 2) {
+            /* No specific adjustments here as the viewport-based responsiveness handles scaling effectively. */
+        }
+
+ 

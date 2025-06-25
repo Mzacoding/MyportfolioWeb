@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nyiko Mkansi -Portfolio</title>
+    <!-- Link to Tailwind CSS CDN for easy styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="static/styles/style.css">
+</head>
+<body class="bg-gray-50">
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container mx-auto flex items-center justify-between">
+            <!-- Logo on Left - Always visible -->
+            <a href="#home" class="z-50">
+                <img src="static/images/LogoN-removebg.png" alt="Nyiko Mkansi Logo" class="h-10 w-auto rounded-md">
+            </a>
+
+            <!-- Hamburger Icon for Mobile - Visible on small screens, hidden on large -->
+            <button id="hamburger-menu" class="lg:hidden text-gray-800 focus:outline-none z-50">
+                <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path class="line top-line" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16"></path>
+                    <path class="line middle-line" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12h16"></path>
+                    <path class="line bottom-line" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 18h16"></path>
+                </svg>
+            </button>
+
+            <!-- Navigation Links Container for Desktop - Centered on large screens -->
+            <div class="hidden lg:flex lg:flex-1 lg:justify-center navbar-links-wrapper-desktop">
+                <div class="navbar-desktop-links flex lg:flex-row lg:w-auto lg:bg-transparent lg:shadow-none lg:space-x-4 lg:flex-nowrap">
+                    <a href="#home" class="nav-link py-3 font-bold text-gray-800 hover:text-blue-600">HOME</a>
+                    <a href="#about" class="nav-link py-3 font-bold text-gray-700 hover:text-blue-600">ABOUT</a>
+                    <a href="#skills" class="nav-link py-3 font-bold text-gray-700 hover:text-blue-600">SKILLS</a>
+                    <a href="#education" class="nav-link py-3 font-bold text-gray-700 hover:text-blue-600">EDUCATION</a>
+                    <a href="#projects" class="nav-link py-3 font-bold text-gray-700 hover:text-blue-600">PROJECTS</a>
+                    <a href="#contact" class="nav-link py-3 font-bold text-gray-700 hover:text-blue-600">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Menu (Full-screen overlay) -->
+    <!-- This div is for mobile only, its visibility is controlled by JS and default CSS state -->
+    <div id="nav-links-menu" class="lg:hidden">
+        <a href="#home" class="nav-link py-3 font-bold text-gray-800 hover:text-blue-600">HOME</a>
+        <a href="#about" class="nav-link py-3 font-bold text-gray-700 hover:text-blue-600">ABOUT</a>
+        <a href="#skills" class="nav-link py-3 font-bold text-gray-700 hover:text-blue-600">SKILLS</a>
+        <a href="#education" class="nav-link py-3 font-bold text-gray-700 hover:text-blue-600">EDUCATION</a>
+        <a href="#projects" class="nav-link py-3 font-bold text-gray-700 hover:text-blue-600">PROJECTS</a>
+        <a href="#contact" class="nav-link py-3 font-bold text-gray-700 hover:text-blue-600">CONTACT</a>
+    </div>
+
+
+    <!-- Header / Hero Section -->
+    <header id="home" class="hero-section has-dark-overlay">
+        <div class="container mx-auto px-8 text-center z-10">
+            <h1 class="text-8xl md:text-9xl font-extrabold leading-tight drop-shadow-2xl">
+                <span class="hero-line" id="hero-line-im"></span><br/>
+                <span class="hero-line" id="hero-line-nyiko"></span><br/>
+                <span class="hero-line" id="hero-line-mkansi"></span>
+            </h1>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="bg-white">
+        <div class="container mx-auto px-8 max-w-6xl">
+            <h2 class="section-title">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-16">
+                <img src="static/images/walker3.jpg" alt="Nyiko Mkansi's profile picture" class="w-72 h-72 object-cover shadow-2xl md:order-1 flex-shrink-0" style="border-radius: 0;"> <!-- Pic is not rounded -->
+                <div class="text-xl text-gray-700 text-center md:text-left leading-relaxed">
+                    <p class="mb-8">I am a passionate Software Developer with a strong foundation in various programming languages and technologies. My expertise lies in creating robust, scalable, and user-friendly applications that solve real-world problems. I am committed to continuous learning and delivering high-quality solutions.</p>
+
+                    <div class="mt-12">
+                        <a href="https://example.com/your-cv.pdf" target="_blank" class="btn-primary inline-flex items-center shadow-lg hover:shadow-xl">
+                            <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd"></path></svg>
+                            Download Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section has-dark-overlay">
+        <div class="container mx-auto px-8 max-w-4xl z-10">
+            <h2 class="section-title"> MY KNOWLEDGE LEVEL IN SOFTWARE</h2>
+            <div class="grid grid-cols-1 gap-8">
+                <!-- Skill Bar: JAVA JEE -->
+                <div class="p-4 rounded-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-semibold text-white">JAVA JEE</span>
+                        <span class="text-lg font-bold text-white">99%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar-fill skill-bar-java" style="width: 99%;"></div>
+                    </div>
+                </div>
+
+                <!-- Skill Bar: Software Engineering Modeling -->
+                <div class="p-4 rounded-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-semibold text-white">Software Engineering Modeling</span>
+                        <span class="text-lg font-bold text-white">80%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar-fill skill-bar-software-engineering" style="width: 80%;"></div>
+                    </div>
+                </div>
+
+                <!-- Skill Bar: Database PL/SQL -->
+                <div class="p-4 rounded-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-semibold text-white">Database PL/SQL</span>
+                        <span class="text-lg font-bold text-white">96%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar-fill skill-bar-database" style="width: 96%;"></div>
+                    </div>
+                </div>
+
+                <!-- Skill Bar: KOTLIN JETPACK COMPOSE -->
+                <div class="p-4 rounded-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-semibold text-white">KOTLIN JETPACK COMPOS</span>
+                        <span class="text-lg font-bold text-white">76%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar-fill skill-bar-kotlin" style="width: 76%;"></div>
+                    </div>
+                </div>
+
+                <!-- Skill Bar: Web Development -->
+                <div class="p-4 rounded-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-semibold text-white">Web Development</span>
+                        <span class="text-lg font-bold text-white">98%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar-fill skill-bar-web-dev" style="width: 98%;"></div>
+                    </div>
+                </div>
+
+                <!-- Skill Bar: Prototyping Tools -->
+                <div class="p-4 rounded-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-semibold text-white">Prototyping Tools</span>
+                        <span class="text-lg font-bold text-white">65%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar-fill skill-bar-prototyping" style="width: 65%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section (Timeline) -->
+    <section id="education" class="education-section has-dark-overlay">
+        <div class="container mx-auto px-8 max-w-5xl z-10">
+            <h2 class="section-title">Education & Milestones</h2>
+            <div class="timeline">
+                <!-- Current University / Post-Grad -->
+                <div class="timeline-item timeline-left">
+                    <div class="timeline-item-content card">
+                        <span class="timeline-date">2022 - 2025</span>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Master of Science (M.Sc.) in Software Engineering - In Progress</h3>
+                        <p class="text-xl text-blue-600 mb-1">Advanced Tech Institute</p>
+                        <p class="text-gray-700 text-lg">Currently pursuing advanced studies in software engineering, focusing on scalable architectures, cloud-native development, and machine learning applications.</p>
+                    </div>
+                </div>
+                <!-- University Diploma -->
+                <div class="timeline-item timeline-right">
+                    <div class="timeline-item-content card">
+                        <span class="timeline-date">2014 - 2019</span>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Diploma in Computer Science</h3>
+                        <p class="text-xl text-blue-600 mb-1">TSHWANE UNIVERSITY OF TECHNOLOGY</p>
+                        <p class="text-gray-700 text-lg">Completed a comprehensive diploma program covering programming fundamentals, database management, web development, and software design principles.</p>
+                    </div>
+                </div>
+                <!-- High School -->
+                <div class="timeline-item timeline-left">
+                    <div class="timeline-item-content card">
+                        <span class="timeline-date">Prior to 2014</span>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Grade 12</h3>
+                        <p class="text-xl text-blue-600 mb-1">MAWEWE HIGH SCHOOL</p>
+                        <p class="text-gray-700 text-lg">Achieved Grade 12 qualification, laying the groundwork for further studies in technology and computer science.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="bg-white">
+        <div class="container mx-auto px-8 max-w-7xl">
+            <h2 class="section-title">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <div class="card bg-white overflow-hidden">
+                    <img src="static/images/okkk.png" alt="Student Attendance Tracking Project" class="w-full project-img">
+                    <div class="p-10">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">STUDENT ATTENDANCE TRACKING</h3>
+                        <p class="text-gray-700 text-lg mb-6">Developed a web application using Django to track student attendance, leveraging Python and database management skills to create an efficient and reliable system.</p>
+                        <div class="flex flex-wrap gap-3 mb-6">
+                            <span class="bg-blue-100 text-blue-800 text-base font-medium px-5 py-2 rounded-full">Django</span>
+                            <span class="bg-blue-100 text-blue-800 text-base font-medium px-5 py-2 rounded-full">Python</span>
+                            <span class="bg-blue-100 text-blue-800 text-base font-medium px-5 py-2 rounded-full">Database Management</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-5 mt-8"> <!-- Adjusted to flex-col on small, row on sm+ -->
+                            <a href="#" target="_blank" class="project-btn-primary inline-flex items-center justify-center">
+                                View Live
+                            </a>
+                            <a href="https://github.com/NyikoMkansi/student-attendance-tracker" target="_blank" class="project-btn-secondary inline-flex items-center justify-center">
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-white overflow-hidden">
+                    <img src="static/images/ed.png" alt="HRM Solution Project" class="w-full project-img">
+                    <div class="p-10">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">HRM SOLUTION</h3>
+                        <p class="text-gray-700 text-lg mb-6">Currently working on an HR Management System using Java Spring, applying knowledge of Java, Spring Boot, and database management for a robust enterprise solution.</p>
+                        <div class="flex flex-wrap gap-3 mb-6">
+                            <span class="bg-blue-100 text-blue-800 text-base font-medium px-5 py-2 rounded-full">Java</span>
+                            <span class="bg-blue-100 text-blue-800 text-base font-medium px-5 py-2 rounded-full">Spring Boot</span>
+                            <span class="bg-blue-100 text-blue-800 text-base font-medium px-5 py-2 rounded-full">Database Management</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-5 mt-8"> <!-- Adjusted to flex-col on small, row on sm+ -->
+                            <a href="#" target="_blank" class="project-btn-primary inline-flex items-center justify-center">
+                                View Live
+                            </a>
+                            <a href="https://www.Nyiko.github" target="_blank" class="project-btn-secondary inline-flex items-center justify-center">
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-white overflow-hidden">
+                    <img src="static/images/pro1.png" alt="Generic Project 3" class="w-full project-img">
+                    <div class="p-10">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">Project Title Placeholder</h3>
+                        <p class="text-gray-700 text-lg mb-6">A brief description of this project, highlighting its key features, the technologies used, and the problem it aimed to solve. This is a placeholder for your third project.</p>
+                        <div class="flex flex-wrap gap-3 mb-6">
+                            <span class="bg-blue-100 text-blue-800 text-base font-medium px-5 py-2 rounded-full">Technology 1</span>
+                            <span class="bg-blue-100 text-blue-800 text-base font-medium px-5 py-2 rounded-full">Technology 2</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-5 mt-8"> <!-- Adjusted to flex-col on small, row on sm+ -->
+                            <a href="#" target="_blank" class="project-btn-primary inline-flex items-center justify-center invisible pointer-events-none">
+                                View Live
+                            </a>
+                            <a href="#" target="_blank" class="project-btn-secondary inline-flex items-center justify-center invisible pointer-events-none">
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section has-dark-overlay">
+        <div class="container mx-auto px-8 max-w-4xl text-center">
+            <h2 class="section-title text-white">Get In Touch</h2>
+            <p class="text-2xl mb-12 opacity-95">
+                Ready to collaborate on an exciting project? Or just want to say hello? Feel free to reach out via email or connect on social media. I'm always open to new opportunities and discussions.
+            </p>
+            <div class="space-y-8 text-xl">
+                <p>Email: <a href="mailto:nyikomkansi@gmail.com" class="text-blue-400 hover:underline text-3xl">nyikomkansi@gmail.com</a></p>
+                <p>Phone: <a href="tel:0782737579" class="text-blue-400 hover:underline text-3xl">0782737579</a></p>
+            </div>
+
+            <div class="mt-12 w-full max-w-md mx-auto">
+                <form id="contactForm" class="bg-white p-8 rounded-lg shadow-xl text-left text-gray-800">
+                    <div class="mb-6">
+                        <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                        <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                        <input type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="subject" class="block text-gray-700 text-sm font-bold mb-2">Subject:</label>
+                        <input type="text" id="subject" name="subject" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    <div class="mb-8">
+                        <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Message:</label>
+                        <textarea id="message" name="message" rows="6" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required></textarea>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <button type="submit" class="project-btn-primary w-full text-xl">Send Message</button>
+                    </div>
+                </form>
+                <div id="formStatus" class="mt-4 text-center text-lg font-semibold" style="display: none;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white text-center py-10">
+        <p class="text-lg opacity-80">&copy; 2025 Nyiko Mkansi. All rights reserved.</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+    
+    
+</body>
+</html>
